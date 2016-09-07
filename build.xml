@@ -1,0 +1,31 @@
+<project>
+
+    <target name="clean">
+        <delete dir="build"/>
+    </target>
+
+    <target name="compile">
+        <mkdir dir="build/classes"/>
+        <javac srcdir="src" destdir="build/classes"/>
+    </target>
+
+    <target name="jar">
+        <mkdir dir="build/jar"/>
+        <jar destfile="build/jar/Recipient.jar" basedir="build/classes">
+            <manifest>
+                <attribute name="Main-Class" value="Recipient"/>
+            </manifest>
+        </jar>
+        <jar destfile="build/jar/Sender.jar" basedir="build/classes">
+            <manifest>
+                <attribute name="Main-Class" value="Sender"/>
+            </manifest>
+        </jar>
+    </target>
+
+    <target name="run">
+        <java jar="build/jar/Recipient.jar" fork="true"/>
+        <java jar="build/jar/Sender.jar" fork="true" />
+    </target>
+
+</project>
